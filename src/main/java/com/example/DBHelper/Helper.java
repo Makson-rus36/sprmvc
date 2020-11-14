@@ -17,6 +17,7 @@ public class Helper {
     ResultSet rs = stat.executeQuery("select id,_name,_lastname " +
             "from users " +
             "where _id_login = (select id from paswordss where logins='"+login+ "' and passwords='"+password+"');");
+        connection.close();
             if(rs.next()){
                 name = rs.getString("_name");
                 lastname = rs.getString("_lastname");
@@ -40,6 +41,7 @@ public class Helper {
         rs.next();
         statCreateUser.executeUpdate("insert into users(_name,_lastname,_id_login)" +
                 "values ('"+name+"','"+lastname+"','"+rs.getString("id")+"')");
+        connection.close();
 
     }
 }
